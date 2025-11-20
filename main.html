@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STC Certificate Portal</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+    }
+
+    /* Header Inspired by Poster */
+    .header {
+      background: linear-gradient(to right, #004a96, #0094d4);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: bold;
+    }
+
+    .header h3 {
+      margin: 10px 0 0;
+      font-size: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      background: white;
+      margin: 40px auto;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 15px;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #0066b3;
+      color: white;
+      border: none;
+      margin-top: 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background: #004f8a;
+    }
+
+    #certificateBox {
+      margin-top: 25px;
+      padding: 20px;
+      background: #e8f4ff;
+      border-left: 5px solid #007acc;
+      display: none;
+      border-radius: 5px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Security & Privacy in Cyber World</h1>
+    <h3>Short Term Course • Certificate Portal</h3>
+    <p>Organized by MNNIT Allahabad & CSE Dept., REC Sonbhadra</p>
+  </div>
+
+  <div class="container">
+    <label>Select Participant Name</label>
+    <select id="nameDropdown">
+      <option value="">-- Select --</option>
+    </select>
+
+    <label>Enter Mobile Number</label>
+    <input id="phoneInput" type="text" placeholder="Enter Mobile Number" />
+
+    <button onclick="showCertificate()">View Certificate</button>
+
+    <div id="certificateBox"></div>
+  </div>
+
+  <div class="footer">
+    © 2025 Short Term Course • Cyber Security<br>For queries: <a href="mailto:spcw.recsonbhadra@gmail.com">spcw.recsonbhadra@gmail.com</a>
+  </div>
+
+  <script>
+    // Data list — TO BE AUTO-INJECTED BY CHATGPT LATER
+    const people = [
+  { name: "Abhishek Gupta", phone: "9369001302", cert: "certificates/24.pdf" },
+  { name: "Abhishek Verma", phone: "6386840054", cert: "certificates/25.pdf" },
+  { name: "Aditya Agrahari", phone: "7080922842", cert: "certificates/26.pdf" },
+  { name: "Ahuja Mitra", phone: "9518944012", cert: "certificates/27.pdf" },
+  { name: "Akash", phone: "9110543900", cert: "certificates/28.pdf" },
+  { name: "Akash kumar", phone: "7052250090", cert: "certificates/29.pdf" },
+  { name: "Akash Pandey", phone: "9555187058", cert: "certificates/30.pdf" },
+  { name: "Akshat Kumar Tiwari", phone: "7266031925", cert: "certificates/31.pdf" },
+  { name: "Anchal Singh", phone: "7860406460", cert: "certificates/32.pdf" },
+  { name: "Aniket Vishwakarma", phone: "8416843263", cert: "certificates/33.pdf" },
+  { name: "Anil Kumar", phone: "9918826203", cert: "certificates/34.pdf" },
+  { name: "Anjali", phone: "9519057764", cert: "certificates/35.pdf" },
+  { name: "Ansh Verma", phone: "8542875020", cert: "certificates/36.pdf" },
+  { name: "Anshumankar Gupta", phone: "7007260957", cert: "certificates/37.pdf" },
+  { name: "Anurag Kumar", phone: "7307182320", cert: "certificates/38.pdf" },
+  { name: "Anurag Singh", phone: "6392027565", cert: "certificates/39.pdf" },
+  { name: "Ashish Kumar Gupta", phone: "8953608180", cert: "certificates/40.pdf" },
+  { name: "Ashvini Kumar Gautam", phone: "7897622597", cert: "certificates/41.pdf" },
+  { name: "Ayush Pal", phone: "9336142503", cert: "certificates/42.pdf" },
+  { name: "Ayush Pathak", phone: "9696634961", cert: "certificates/43.pdf" },
+  { name: "Ayush Verma", phone: "8881159740", cert: "certificates/44.pdf" },
+  { name: "Ayushman Pandey", phone: "8303942590", cert: "certificates/45.pdf" },
+  { name: "Chandra Singh", phone: "7800019338", cert: "certificates/46.pdf" },
+  { name: "Deepak Kumar", phone: "8400168006", cert: "certificates/47.pdf" },
+  { name: "Devesh Maurya", phone: "9044857161", cert: "certificates/48.pdf" },
+  { name: "Devraj singh", phone: "9512102899", cert: "certificates/49.pdf" },
+  { name: "Dhananjay Gupta", phone: "9580821512", cert: "certificates/50.pdf" },
+  { name: "Dhruv Pandey", phone: "9368047264", cert: "certificates/51.pdf" },
+  { name: "Dilip Kumar Yadav", phone: "9919831377", cert: "certificates/52.pdf" },
+  { name: "Dipanshu Varshney", phone: "8384897672", cert: "certificates/53.pdf" },
+  { name: "Dr. Abhinav Gupta", phone: "8081641050", cert: "certificates/54.pdf" },
+  { name: "Gaurav Shakya", phone: "8279923702", cert: "certificates/55.pdf" },
+  { name: "Gaurav Yadav", phone: "9555723460", cert: "certificates/56.pdf" },
+  { name: "Harshit Srivastava", phone: "9838493720", cert: "certificates/57.pdf" },
+  { name: "Himanshu", phone: "7460034709", cert: "certificates/58.pdf" },
+  { name: "Kanika Patel", phone: "9452710796", cert: "certificates/59.pdf" },
+  { name: "Karan Yadav", phone: "8920464915", cert: "certificates/60.pdf" },
+  { name: "Kunal", phone: "8954247274", cert: "certificates/61.pdf" },
+  { name: "Lal Babu Yadav", phone: "9651283896", cert: "certificates/62.pdf" },
+  { name: "Manas Agrawal", phone: "9569952534", cert: "certificates/63.pdf" },
+  { name: "Manish Kumar", phone: "9305017615", cert: "certificates/64.pdf" },
+  { name: "Manoj Kumar", phone: "8542835046", cert: "certificates/65.pdf" },
+  { name: "Mohammad Akib", phone: "6386080583", cert: "certificates/66.pdf" },
+  { name: "Mukund", phone: "6386493452", cert: "certificates/67.pdf" },
+  { name: "Neel Kamal", phone: "9457926377", cert: "certificates/68.pdf" },
+  { name: "Neeraj", phone: "9324140772", cert: "certificates/69.pdf" },
+  { name: "Nikhil Kant", phone: "9870876915", cert: "certificates/70.pdf" },
+  { name: "Nishant Raj", phone: "9065021879", cert: "certificates/71.pdf" },
+  { name: "Nitish Bhatt", phone: "8601584481", cert: "certificates/72.pdf" },
+  { name: "Om Pandey", phone: "7080632231", cert: "certificates/73.pdf" },
+  { name: "Pooja Samadhiya", phone: "9369869575", cert: "certificates/74.pdf" },
+  { name: "Prabhat Kumar", phone: "8115793859", cert: "certificates/75.pdf" },
+  { name: "Pratiksha Chandra", phone: "8957203654", cert: "certificates/76.pdf" },
+  { name: "Pritesh Mishra", phone: "9580390638", cert: "certificates/77.pdf" },
+  { name: "Priyanka Pandey", phone: "6389909983", cert: "certificates/78.pdf" },
+  { name: "Pushpendra", phone: "8874275230", cert: "certificates/79.pdf" },
+  { name: "Raj Kumar Yadav", phone: "9919710681", cert: "certificates/80.pdf" },
+  { name: "Rakhi yadav", phone: "9713049089", cert: "certificates/81.pdf" },
+  { name: "Rakshit singh", phone: "8081994836", cert: "certificates/82.pdf" },
+  { name: "Ram Ishwar Vais", phone: "7376265734", cert: "certificates/83.pdf" },
+  { name: "Ravi Singh", phone: "7234072278", cert: "certificates/84.pdf" },
+  { name: "Richa Pal", phone: "9305618755", cert: "certificates/85.pdf" },
+  { name: "Richa Vishwakarma", phone: "8303387882", cert: "certificates/86.pdf" },
+  { name: "Rishabh Pal", phone: "8931872407", cert: "certificates/87.pdf" },
+  { name: "Rupendra Gangwar", phone: "6396827819", cert: "certificates/88.pdf" },
+  { name: "Sachin Kumar Maddheshiya", phone: "8423465752", cert: "certificates/89.pdf" },
+  { name: "Sakshi Yadav", phone: "9473533520", cert: "certificates/90.pdf" },
+  { name: "Satyam Singh", phone: "8787026916", cert: "certificates/91.pdf" },
+  { name: "Satyam Yadav", phone: "6388281893", cert: "certificates/92.pdf" },
+  { name: "Satyendra Yadav", phone: "6387789296", cert: "certificates/93.pdf" },
+  { name: "Shailesh kumar", phone: "9119947743", cert: "certificates/94.pdf" },
+  { name: "Shashank", phone: "9335086002", cert: "certificates/95.pdf" },
+  { name: "Shashikant Singh", phone: "7619801941", cert: "certificates/96.pdf" },
+  { name: "Shashwat Mishra", phone: "9450243422", cert: "certificates/97.pdf" },
+  { name: "Shiv Bharti", phone: "7905623030", cert: "certificates/98.pdf" },
+  { name: "Shreya Tripathi", phone: "6301731315", cert: "certificates/99.pdf" },
+  { name: "Shreya Yashasvi", phone: "8318785958", cert: "certificates/100.pdf" },
+  { name: "Sneha Kesarwani", phone: "6386857478", cert: "certificates/101.pdf" },
+  { name: "Sneha Pandey", phone: "9120442401", cert: "certificates/102.pdf" },
+  { name: "Sonu Singh", phone: "8858505874", cert: "certificates/103.pdf" },
+  { name: "Sujeet Kumar Singh", phone: "9598946624", cert: "certificates/104.pdf" },
+  { name: "Vaibhav Patel", phone: "9696276027", cert: "certificates/105.pdf" },
+  { name: "Varun Sharma", phone: "9625726625", cert: "certificates/106.pdf" },
+  { name: "Vijay Kushwaha", phone: "6307546179", cert: "certificates/107.pdf" },
+  { name: "Vijay Yadav", phone: "7985341898", cert: "certificates/108.pdf" },
+  { name: "Vikramaditya Singh", phone: "7267893607", cert: "certificates/109.pdf" },
+  { name: "Vinit Prajapati", phone: "9598938743", cert: "certificates/110.pdf" },
+  { name: "Vishal kumar", phone: "8726677537", cert: "certificates/111.pdf" },
+  { name: "Vivek Pandey", phone: "9651421635", cert: "certificates/112.pdf" },
+  { name: "Yashashvi Verma", phone: "9305356869", cert: "certificates/113.pdf" },
+  { name: "Mr. Sikandar", phone: "8317025411", cert: "certificates/114.pdf" },
+  { name: "Dr. Vijay Pratap Singh", phone: "9889897041", cert: "certificates/115.pdf" },
+  { name: "Dr. P. K. Verma", phone: "9882299205", cert: "certificates/116.pdf" }
+];
+
+
+    // Populate dropdown
+    const dropdown = document.getElementById("nameDropdown");
+    people.forEach(p => {
+      let option = document.createElement("option");
+      option.value = p.name;
+      option.textContent = p.name;
+      dropdown.appendChild(option);
+    });
+
+    function showCertificate() {
+      const name = dropdown.value;
+      const phone = document.getElementById("phoneInput").value.trim();
+      const box = document.getElementById("certificateBox");
+
+      const person = people.find(p => p.name === name && p.phone === phone);
+
+      if (person) {
+        box.style.display = "block";
+        box.innerHTML = `
+          <h3>Certificate for ${person.name}</h3>
+          <a href="${person.cert}" target="_blank" style="font-size:18px; color:#0057b3;">Open Certificate</a>
+        `;
+      } else {
+        box.style.display = "block";
+        box.innerHTML = `<p style='color:red;'>Name or Mobile number is incorrect.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
