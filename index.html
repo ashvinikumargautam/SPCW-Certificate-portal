@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STC Certificate Portal</title>
+ <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="header">
+    <h1>Security & Privacy in Cyber World</h1>
+    <h3>Short Term Course • Certificate Portal</h3>
+    <p>Organized by MNNIT Allahabad & CSE Dept., REC Sonbhadra</p>
+  </div>
+
+  <div class="container">
+    <label>Select Participant Name</label>
+    <select id="nameDropdown">
+      <option value="">-- Select --</option>
+    </select>
+
+    <label>Enter Mobile Number</label>
+    <input id="phoneInput" type="text" placeholder="Enter Mobile Number" />
+
+    <button onclick="showCertificate()">View Certificate</button>
+
+    <div id="certificateBox"></div>
+  </div>
+
+  <div class="footer">
+    © 2025 Short Term Course • Cyber Security<br>For queries: <a href="mailto:spcw.recsonbhadra@gmail.com">spcw.recsonbhadra@gmail.com</a>
+  </div>
+
+ <script src="script.js"></script>
+</body>
+</html>
